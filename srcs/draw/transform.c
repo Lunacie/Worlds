@@ -49,6 +49,11 @@ Vector			*applyRotation(t_axis axis, double x, double y, double z, double value)
       vector->y = x * sin(value) + y * cos(value);
       vector->z = z;
     }
+
+
+  /* vector->x = x; */
+  /* vector->y = y; */
+  /* vector->z = z; */
   return vector;
 }
 

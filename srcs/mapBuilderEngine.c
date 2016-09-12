@@ -48,7 +48,7 @@ t_engine		*initEngineMapBuilder(void)
 
 static int		update(t_data *data)
 {
-  selectElementFromMap(data->events);
+  /* selectElementFromMap(data->events); */
 }
 
 t_mapBuilderData		*handleMapBuilderData(t_mapBuilderData *tmp)

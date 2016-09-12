@@ -46,8 +46,8 @@ SRCS		=		main.c						\
 				draw/draw_camera.c				\
 				draw/primitives/drawCube_primitive.c		\
 				draw/map/map.c					\
+				draw/map/octree.c				\
 				draw/map/chunk.c				\
-				draw/map/cube.c					\
 				draw/map/voxel.c				\
 										\
 				material/getMaterial.c				\
@@ -55,6 +55,7 @@ SRCS		=		main.c						\
 				material/tga.c					\
 										\
 				map/map.c					\
+				map/octree.c					\
 										\
 				mapBuilderEngine.c				\
 				mapBuilder/selectElementFromMap.c		\

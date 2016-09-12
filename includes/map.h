@@ -36,14 +36,19 @@ typedef struct		s_map
   /* Chunk			chunks[FAR]; */
   char			***buffer;
   size_t		size;
+  struct s_octreeNode	*octree;
+  
 
   size_t		nbChunks;
-  size_t		nbCubesPerChunks;
-  size_t		nbVoxelsPerCubes;
+  size_t		nbVoxelsPerChunk;
+  size_t		edgeSize;
+  size_t		subdivisions;
+  
 
-  size_t		multiplier;
+  /* size_t		nbCubesPerChunks; */
+  /* size_t		nbVoxelsPerCubes; */
+  /* size_t		multiplier; */
 }			Map;
-
 
 Map			*initMap();
 void			setVoxel(Map *map, size_t chunk, size_t cube, size_t voxel, char type);
@@ -52,6 +57,5 @@ void			printMap(Map *map);
 
 bool			cubeIsFull(Map *map, size_t chunk, size_t cube);
 bool			chunkIsFull(Map *map, size_t chunk);
-
 
 #endif			/* MAP_H */

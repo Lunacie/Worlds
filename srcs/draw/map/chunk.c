@@ -37,43 +37,43 @@ void			drawChunks(Map *map, float x, float y, float z)
 {
   size_t		chunk;
 
-  float			_x = 0;
-  float			_y = 0;
-  float			_z = 0;
+  size_t		_x = 0;
+  size_t		_y = 0;
+  size_t		_z = 0;
 
+  char			type;
 
   chunk = 0;
-  for (_x = 0; _x < map->multiplier; _x++)
+  
+  for (_x = 0; _x < map->edgeSize; _x += 1)
     {
-      for (_z = 0; _z < map->multiplier ; _z++)
+      for (_y = 0; _y < map->edgeSize; _y += 1)
 	{
-	  // full chunk
-	  if (chunkIsFull(map, chunk) == true)
+	  for (_z = 0; _z < map->edgeSize; _z += 1)
 	    {
 	      
-	      if (getVoxel(map, chunk, 0, 0) == 0); // full chunk air
-	      else 	      // full chunk block
-		{
-		  drawCube_primitive(x + ((_x * PIXEL_PER_VOXEL) * map->multiplier * map->multiplier),
-				     y + ((_y * PIXEL_PER_VOXEL) * map->multiplier * map->multiplier),
-				     z + ((_z * PIXEL_PER_VOXEL) * map->multiplier * map->multiplier),
-				     getVoxel(map, chunk, 0, 0), false, 
-				     PIXEL_PER_VOXEL * map->multiplier * map->multiplier);
-		}
+	      /* printf("%f %f %f\n", x + (_x * PIXEL_PER_VOXEL), */
+	      /* 	     y + (_y * PIXEL_PER_VOXEL), */
+	      /* 	     z + (_z * PIXEL_PER_VOXEL)); */
 	      
+	      type = map->buffer[_x][_y][_z];
+	      if (type == 0)
+		type = 1;
+
+	      if (type)
+		drawCube_primitive(
+		  x + (_x * PIXEL_PER_VOXEL),
+		  y + (_y * PIXEL_PER_VOXEL),
+		  z + (_z * PIXEL_PER_VOXEL),
+		  type, false, PIXEL_PER_VOXEL);
+		
+	      /* printf("\n\t\t%f %f %f\n", _x, _y, _z); */
+	      /* drawCube_primitive(_x, _y, _z, */
+	      /* 	/\* map->buffer[_x][_y][_z] *\/7, false, PIXEL_PER_VOXEL);  */
+
 	    }
-	  else
-	    {
-	      drawCubes(map,
-			x + (((_x * PIXEL_PER_VOXEL) * map->multiplier) * map->multiplier),
-			y + (((_y * PIXEL_PER_VOXEL) * map->multiplier) * map->multiplier),
-			z + (((_z * PIXEL_PER_VOXEL) * map->multiplier) * map->multiplier),
-			chunk);
-	    }
-	  chunk++;
-	  
-	  if (chunk >= map->nbChunks)
-	    return;
 	}
     }
+  /* exit(0); */
+  
 }

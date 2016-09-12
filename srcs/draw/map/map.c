@@ -89,13 +89,22 @@ int			draw_map(void)
       /* debug(" "); */
       /* debug("| | | | Map was succesully loaded from Game Engine. Drawing Starts : "); */
 
-
+      
       /* glPushMatrix(); */
       /* glRotated(camera->rotation.x, 0, 1, 0); */
       /* glTranslatef(0, 0, camera->translation.z); */
-      drawChunks(map, x, y, z);
+
+      /* drawChunks(map, x, y, z); */
+
+      drawOctree(map, x, y, z, map->octree);
+
+      /* drawOctree(map, x, y, z, map->octree->children[0]); */
+      /* drawOctree(map, x, y, z, map->octree->children[0]->children[4]); */
+      /* drawOctree(map, x, y, z, map->octree->children[0]->children[4]->children[0]); */
+      /* drawOctree(map, x, y, z, map->octree->children[0]->children[4]->children[0]->children[5]); */
+
+
       /* glPopMatrix(); */
-      
     }
   else
     debug("| | | | Could not load map from game Engine");

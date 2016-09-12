@@ -252,8 +252,10 @@ t_bool			isInsideFrustrum(double x, double y, double z)
   double		D;
 
   double		margin;
+  size_t		count;
 
   margin = 0.1;
+  count = 0;
 
   if (!(vector = malloc(sizeof(Vector))))
     exit(FAILURE);
@@ -275,12 +277,16 @@ t_bool			isInsideFrustrum(double x, double y, double z)
       /* 	printf("%f TRUE\n", dist); */
       if (dist < 0)
 	{ 
+	  count += 1;
 	  free(vector);
 	  return false;
 	}
     }
-  
   free(vector);
+
+  /* if (count == _NB_PLANES - 1) */
+  /*   return false; */
+  
   return true;
 }
 
